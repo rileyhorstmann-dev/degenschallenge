@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spicy & Sweaty Challenge</title>
+  <style>
+    :root{
+      --ink:#211411; --muted:#7d6158; --line:#efd4c1; --card:rgba(255,255,255,.92);
+      --hot:#f04438; --orange:#ff7a1a; --gold:#f5b642; --green:#16a34a; --blue:#2563eb;
+      --shadow:0 22px 70px rgba(126,54,20,.16); --soft:0 10px 25px rgba(126,54,20,.09);
+    }
+    *{box-sizing:border-box} body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 12% 0%,#ffd08a 0 17%,transparent 36%),radial-gradient(circle at 90% 0%,#ffc0cf 0 14%,transparent 34%),linear-gradient(135deg,#fff8ef,#ffe7d4 50%,#fff)}
+    button,input,textarea{font:inherit}.app{max-width:1120px;margin:0 auto;padding:18px 13px 90px}.hero{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;right:-65px;top:-75px;width:220px;height:220px;border-radius:50%;background:linear-gradient(135deg,rgba(240,68,56,.18),rgba(255,122,26,.16))}.kicker{font-size:12px;font-weight:950;color:var(--hot);text-transform:uppercase;letter-spacing:.14em}.hero h1{font-size:clamp(36px,7vw,68px);line-height:.9;margin:10px 0 10px;letter-spacing:-.06em}.hero p{color:var(--muted);margin:0;line-height:1.45;max-width:770px}.status{margin-top:13px;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:#fff7eb;border-radius:999px;padding:9px 12px;color:#7a4a13;font-size:13px;font-weight:850}.status.ok{background:#ecfdf3;color:#116b38}.status.bad{background:#fff1f2;color:#a11b1b}.people{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:14px 0}.person{border:1px solid var(--line);background:#fff;border-radius:20px;padding:14px 11px;text-align:left;font-weight:950;cursor:pointer;box-shadow:var(--soft);transition:.16s}.person:hover{transform:translateY(-1px)}.person span{display:block;color:var(--muted);font-size:12px;font-weight:800;margin-top:4px}.person.active{background:#211411;color:#fff;border-color:#211411}.person.active span{color:rgba(255,255,255,.72)}.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--shadow)}h2{margin:0 0 8px;font-size:24px;letter-spacing:-.02em}.small{font-size:13px;color:var(--muted);line-height:1.45}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:13px 0}input[type=date],input[type=password],input[type=text]{border:1px solid var(--line);border-radius:15px;padding:12px;background:white;font-weight:800;color:var(--ink)}.btn{border:1px solid var(--line);background:white;border-radius:15px;padding:12px 14px;font-weight:950;cursor:pointer}.primary{border:0;background:linear-gradient(135deg,var(--hot),var(--orange));color:white;box-shadow:0 12px 24px rgba(240,68,56,.22)}.secondary{background:#211411;color:#fff;border-color:#211411}.goals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.goal{position:relative;border:1px solid var(--line);background:#fffaf6;border-radius:20px;padding:14px 12px 14px 54px;min-height:94px;cursor:pointer;display:block}.goal input{position:absolute;left:15px;top:22px;width:25px;height:25px;accent-color:var(--green)}.goal b{display:block;font-size:15px}.goal small{display:block;color:var(--muted);margin-top:4px;line-height:1.35}.goal .pts{display:inline-block;margin-top:9px;border:1px solid var(--line);border-radius:999px;padding:5px 8px;font-size:12px;font-weight:950;background:#fff;color:#8a3b12}.goal.done{background:linear-gradient(135deg,#ecfff5,#fffaf6);border-color:rgba(22,163,74,.48)}.score{font-size:52px;font-weight:1000;letter-spacing:-.06em;margin:6px 0 0}.meter{height:13px;background:#f3d5c2;border-radius:999px;overflow:hidden;margin:10px 0 16px}.meter span{height:100%;display:block;background:linear-gradient(90deg,var(--hot),var(--orange),var(--gold),var(--green));border-radius:999px}.leader{display:grid;gap:9px;margin-top:12px}.row{display:grid;grid-template-columns:38px 1fr auto;gap:9px;align-items:center;border:1px solid var(--line);background:#fffaf6;border-radius:18px;padding:11px}.rank{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--orange),var(--hot));color:#fff;font-weight:1000}.row:nth-child(1) .rank{background:linear-gradient(135deg,#ffd666,#f59e0b)}.row:nth-child(2) .rank{background:linear-gradient(135deg,#d8e0ea,#64748b)}.row:nth-child(3) .rank{background:linear-gradient(135deg,#d08a48,#8b4513)}.name{font-weight:1000}.mini{height:8px;background:#f3d5c2;border-radius:999px;overflow:hidden;margin-top:5px}.mini span{display:block;height:100%;background:linear-gradient(90deg,var(--hot),var(--orange),var(--green));border-radius:999px}.points{font-size:21px;font-weight:1000}.summaryBox{margin-top:14px}.summaryBox textarea{width:100%;min-height:78px;border:1px solid var(--line);border-radius:16px;padding:11px;background:white;color:var(--ink);resize:vertical}.week{margin-top:14px}.days{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.day{border:1px solid var(--line);border-radius:15px;background:#fffaf6;padding:8px;min-height:78px}.day b{font-size:11px}.day div{font-size:11px;color:var(--muted);margin-top:5px}.modal{position:fixed;inset:0;background:rgba(33,20,17,.42);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}.modal.show{display:flex}.modalBox{background:white;border-radius:24px;border:1px solid var(--line);box-shadow:var(--shadow);padding:20px;max-width:380px;width:100%}.modalBox h3{margin:0 0 7px;font-size:24px}.modalBox input{width:100%;margin:12px 0}.bottom{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.9);border-top:1px solid var(--line);backdrop-filter:blur(16px);z-index:20}.bottom .inner{max-width:1120px;margin:0 auto;padding:10px 13px;display:flex;gap:10px;align-items:center;justify-content:space-between}.bottom strong{font-size:14px}.bottom span{color:var(--muted);font-weight:800}.toast{position:fixed;right:16px;bottom:72px;background:#211411;color:#fff;border-radius:16px;padding:12px 14px;font-weight:850;box-shadow:var(--shadow);display:none;z-index:60}.toast.show{display:block}@media(max-width:880px){.grid{grid-template-columns:1fr}.people{grid-template-columns:repeat(2,1fr)}.goals{grid-template-columns:1fr}.days{grid-template-columns:repeat(2,1fr)}.bottom .inner{align-items:flex-start;flex-direction:column}.score{font-size:42px}}@media(max-width:430px){.people{grid-template-columns:1fr}.hero{padding:20px}.card{padding:15px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <section class="hero">
+    <div class="kicker">5 friends • 30 days • shared leaderboard</div>
+    <h1>Spicy & Sweaty Challenge</h1>
+    <p>Pick your name, enter your PIN, choose the date, check your completed goals, then hit Save / Send. Everyone sees the same shared leaderboard.</p>
+    <div id="status" class="status">Connecting to Firebase…</div>
+  </section>
+
+  <section class="people" id="people"></section>
+
+  <main class="grid">
+    <section class="card">
+      <h2 id="title">Daily Checkoff</h2>
+      <div class="small">Check each individual goal completed for the selected person and date.</div>
+      <div class="toolbar">
+        <input id="date" type="date" />
+        <button class="btn" id="clearBtn" type="button">Clear this day</button>
+        <button class="btn primary" id="saveBtn" type="button">Save / Send Check-In</button>
+      </div>
+      <div class="goals" id="goals"></div>
+      <div class="summaryBox">
+        <h2>Daily Summary</h2>
+        <textarea id="summary" readonly></textarea>
+      </div>
+      <div class="week">
+        <h2>Week View</h2>
+        <div id="weekRange" class="small"></div>
+        <div id="days" class="days"></div>
+      </div>
+    </section>
+
+    <aside class="card">
+      <h2>Leaderboard</h2>
+      <div class="small">Ranked by total challenge points. Perfect score is 192 points; extra strength/cardio can go above perfect.</div>
+      <div class="score" id="currentScore">0</div>
+      <div class="small">Current player points</div>
+      <div class="meter"><span id="meter" style="width:0%"></span></div>
+      <div id="leader" class="leader"></div>
+      <div class="small" style="margin-top:14px"><b>Workout proof:</b> share your workout photo/screenshot in the group chat with your daily summary.</div>
+    </aside>
+  </main>
+</div>
+
+<div class="bottom"><div class="inner"><strong>Selected: <span id="selectedText">None</span></strong><strong>Today: <span id="todayText">No goals checked yet.</span></strong></div></div>
+<div id="toast" class="toast"></div>
+
+<div id="pinModal" class="modal">
+  <div class="modalBox">
+    <h3 id="pinTitle">Enter PIN</h3>
+    <div class="small">This keeps friends from accidentally editing the wrong person.</div>
+    <input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" />
+    <div class="toolbar" style="margin-bottom:0">
+      <button class="btn primary" id="pinSubmit" type="button">Unlock</button>
+      <button class="btn" id="pinCancel" type="button">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDOOSL9BUXPhAGFAOr2ilLW5YKNeMP3F1Y",
+  authDomain: "degens-challenge.firebaseapp.com",
+  projectId: "degens-challenge",
+  storageBucket: "degens-challenge.firebasestorage.app",
+  messagingSenderId: "128359457733",
+  appId: "1:128359457733:web:e5364232b8e6b746a7e1ac",
+  measurementId: "G-L7L0Q448KY"
+};
+
+const PEOPLE = ["Riley", "Cilly", "Margs", "Dyl", "J Money"];
+const PINS = {"Riley":"1111", "Cilly":"2222", "Margs":"3333", "Dyl":"4444", "J Money":"5555"};
+const GOALS = [
+  {id:"strength", name:"Strength Training", short:"Strength", points:3, detail:"At least 30 minutes. Goal: 2x/week."},
+  {id:"cardio", name:"Cardio", short:"Cardio", points:3, detail:"At least 40 minutes medium-high effort. Goal: 3x/week."},
+  {id:"water", name:"Water", short:"Water", points:2, detail:"Drink at least 64oz of water."},
+  {id:"scroll", name:"No Scrolling Before Bed", short:"No scrolling", points:1, detail:"No scrolling at least 15 minutes before bed."},
+  {id:"clean", name:"Clean Eating", short:"Clean eating", points:2, detail:"Cleaner/natural foods as much as possible."},
+  {id:"rest", name:"Rest / Recovery Day", short:"Rest", points:0, detail:"Rest and recover 1–2 days per week. Tracked, no points."},
+  {id:"weigh", name:"Monday Weigh-In", short:"Weigh-in", points:2, detail:"Weigh yourself every Monday and log privately.", mondayOnly:true}
+];
+
+const $ = (id) => document.getElementById(id);
+const todayISO = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+};
+const key = (person,date) => `${person}|${date}`;
+const isMonday = (date) => new Date(date + "T12:00:00").getDay() === 1;
+const fmt = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+
+let db, ref;
+let remote = {logs:{}};
+let draft = {logs:{}};
+let selected = localStorage.getItem("ssc_selected") || "Riley";
+let unlocked = JSON.parse(localStorage.getItem("ssc_unlocked") || "{}");
+let pendingPerson = null;
+
+function clone(obj){ return JSON.parse(JSON.stringify(obj || {logs:{}})); }
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1500); }
+function dayPoints(log,date){ return GOALS.reduce((sum,g)=> sum + (log?.[g.id] && (!g.mondayOnly || isMonday(date)) ? g.points : 0), 0); }
+function total(person, source=draft){ return Object.entries(source.logs || {}).filter(([k])=>k.startsWith(person+"|")).reduce((sum,[k,l])=>sum+dayPoints(l,k.split("|")[1]),0); }
+function checkedNames(log,date){ return GOALS.filter(g=>log?.[g.id] && (!g.mondayOnly || isMonday(date))).map(g=>g.short); }
+function getLog(source, person, date){ return source.logs?.[key(person,date)] || {}; }
+function summaryText(){ const d=$("date").value; const l=getLog(draft,selected,d); const names=checkedNames(l,d); return `${selected} - ${d}: ${names.length ? names.join(", ") : "No goals completed"} (${dayPoints(l,d)} pts)`; }
+
+function renderPeople(){
+  $("people").innerHTML = PEOPLE.map(p=>`<button class="person ${p===selected?'active':''}" data-person="${p}">${p}<span>${total(p)} points</span></button>`).join("");
+  document.querySelectorAll(".person").forEach(btn=>btn.addEventListener("click",()=>choosePerson(btn.dataset.person)));
+}
+function renderGoals(){
+  const d=$("date").value; const log=getLog(draft,selected,d);
+  $("title").textContent = `${selected} Daily Checkoff`;
+  $("selectedText").textContent = `${selected}${unlocked[selected] ? " unlocked" : " locked"}`;
+  $("goals").innerHTML = GOALS.filter(g=>!g.mondayOnly || isMonday(d)).map(g=>`
+    <label class="goal ${log[g.id]?'done':''}">
+      <input type="checkbox" data-goal="${g.id}" ${log[g.id]?'checked':''} ${unlocked[selected]?'':'disabled'} />
+      <b>${g.name}</b><small>${g.detail}</small><span class="pts">${g.points} pts</span>
+    </label>`).join("");
+  document.querySelectorAll("input[data-goal]").forEach(cb=>cb.addEventListener("change",()=>toggleGoal(cb.dataset.goal, cb.checked)));
+  const names=checkedNames(log,d);
+  $("todayText").textContent = names.length ? `${selected}: ${names.join(", ")} — ${dayPoints(log,d)} pts today` : `${selected}: No goals checked yet.`;
+  $("summary").value = summaryText();
+  const score=total(selected);
+  $("currentScore").textContent = score;
+  $("meter").style.width = `${Math.min(100, score/192*100)}%`;
+}
+function renderLeader(){
+  const rows = PEOPLE.map(p=>({p,score:total(p)})).sort((a,b)=>b.score-a.score);
+  $("leader").innerHTML = rows.map((r,i)=>`<div class="row"><div class="rank">${i+1}</div><div><div class="name">${r.p}</div><div class="mini"><span style="width:${Math.min(100,r.score/192*100)}%"></span></div></div><div class="points">${r.score}</div></div>`).join("");
+}
+function renderWeek(){
+  const base = new Date($("date").value + "T12:00:00");
+  const diff = (base.getDay()+6)%7;
+  base.setDate(base.getDate()-diff);
+  const days=[];
+  for(let i=0;i<7;i++){ const d=new Date(base); d.setDate(base.getDate()+i); days.push(d); }
+  $("weekRange").textContent = `${fmt(days[0])} to ${fmt(days[6])}`;
+  $("days").innerHTML = days.map(d=>{
+    const ds=fmt(d); const log=getLog(draft,selected,ds); const names=checkedNames(log,ds);
+    return `<div class="day"><b>${d.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})}</b><div>${names.join(", ") || "None"}</div><div>${dayPoints(log,ds)} pts</div></div>`;
+  }).join("");
+}
+function render(){ renderPeople(); renderGoals(); renderLeader(); renderWeek(); }
+
+function choosePerson(person){
+  selected = person; localStorage.setItem("ssc_selected", selected);
+  if(!unlocked[person]) openPin(person);
+  render();
+}
+function openPin(person){ pendingPerson=person; $("pinTitle").textContent=`Enter ${person}'s PIN`; $("pinInput").value=""; $("pinModal").classList.add("show"); setTimeout(()=>$("pinInput").focus(),50); }
+function closePin(){ $("pinModal").classList.remove("show"); pendingPerson=null; }
+function submitPin(){
+  if(!pendingPerson) return;
+  if($("pinInput").value === PINS[pendingPerson]){
+    unlocked[pendingPerson]=true; localStorage.setItem("ssc_unlocked", JSON.stringify(unlocked)); toast(`${pendingPerson} unlocked`); closePin(); render();
+  } else toast("Wrong PIN");
+}
+function toggleGoal(goal, checked){
+  if(!unlocked[selected]){ openPin(selected); return; }
+  const d=$("date").value;
+  const k=key(selected,d);
+  draft.logs[k] = {...(draft.logs[k] || {})};
+  draft.logs[k][goal] = checked;
+  render();
+}
+async function saveCheckIn(){
+  if(!unlocked[selected]){ openPin(selected); return; }
+  try{
+    await setDoc(ref, {...draft, updatedAt: serverTimestamp()}, {merge:false});
+    const txt=summaryText();
+    $("summary").value = txt; $("summary").focus(); $("summary").select();
+    try{ await navigator.clipboard.writeText(txt); toast("Saved + copied summary"); } catch { toast("Saved. Summary selected."); }
+  } catch(e){ console.error(e); toast("Save failed. Check Firestore rules."); }
+}
+function clearDay(){
+  if(!unlocked[selected]){ openPin(selected); return; }
+  delete draft.logs[key(selected,$("date").value)]; render(); toast("Cleared locally. Hit Save / Send.");
+}
+
+async function boot(){
+  $("date").value = todayISO();
+  $("pinSubmit").addEventListener("click",submitPin);
+  $("pinCancel").addEventListener("click",closePin);
+  $("pinInput").addEventListener("keydown",e=>{if(e.key==="Enter") submitPin();});
+  $("saveBtn").addEventListener("click",saveCheckIn);
+  $("clearBtn").addEventListener("click",clearDay);
+  $("date").addEventListener("change",render);
+  try{
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    ref = doc(db, "challenge_state", "spicy_sweaty_2026");
+    const snap = await getDoc(ref);
+    if(!snap.exists()) await setDoc(ref, {logs:{}, createdAt: serverTimestamp(), updatedAt: serverTimestamp()});
+    onSnapshot(ref, (docSnap)=>{
+      remote = docSnap.exists() ? docSnap.data() : {logs:{}};
+      draft = clone(remote);
+      $("status").className="status ok";
+      $("status").textContent="Connected. Shared leaderboard is live.";
+      render();
+    }, (err)=>{
+      console.error(err); $("status").className="status bad"; $("status").textContent="Firebase connected, but Firestore read failed. Check rules."; render();
+    });
+  } catch(e){
+    console.error(e); $("status").className="status bad"; $("status").textContent="App loaded, but Firebase connection failed."; render();
+  }
+}
+boot();
+</script>
+</body>
+</html>
