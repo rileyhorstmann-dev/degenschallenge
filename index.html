@@ -6,20 +6,26 @@
   <title>Spicy & Sweaty Challenge</title>
   <style>
     :root{
-      --ink:#211411; --muted:#7d6158; --line:#efd4c1; --card:rgba(255,255,255,.92);
-      --hot:#f04438; --orange:#ff7a1a; --gold:#f5b642; --green:#16a34a; --blue:#2563eb;
+      --ink:#211411; --muted:#7d6158; --line:#efd4c1; --card:rgba(255,255,255,.93);
+      --hot:#f04438; --orange:#ff7a1a; --gold:#f5b642; --green:#16a34a; --blue:#2563eb; --purple:#7c3aed;
       --shadow:0 22px 70px rgba(126,54,20,.16); --soft:0 10px 25px rgba(126,54,20,.09);
     }
-    *{box-sizing:border-box} body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 12% 0%,#ffd08a 0 17%,transparent 36%),radial-gradient(circle at 90% 0%,#ffc0cf 0 14%,transparent 34%),linear-gradient(135deg,#fff8ef,#ffe7d4 50%,#fff)}
-    button,input,textarea{font:inherit}.app{max-width:1120px;margin:0 auto;padding:18px 13px 90px}.hero{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;right:-65px;top:-75px;width:220px;height:220px;border-radius:50%;background:linear-gradient(135deg,rgba(240,68,56,.18),rgba(255,122,26,.16))}.kicker{font-size:12px;font-weight:950;color:var(--hot);text-transform:uppercase;letter-spacing:.14em}.hero h1{font-size:clamp(36px,7vw,68px);line-height:.9;margin:10px 0 10px;letter-spacing:-.06em}.hero p{color:var(--muted);margin:0;line-height:1.45;max-width:770px}.status{margin-top:13px;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:#fff7eb;border-radius:999px;padding:9px 12px;color:#7a4a13;font-size:13px;font-weight:850}.status.ok{background:#ecfdf3;color:#116b38}.status.bad{background:#fff1f2;color:#a11b1b}.people{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:14px 0}.person{border:1px solid var(--line);background:#fff;border-radius:20px;padding:14px 11px;text-align:left;font-weight:950;cursor:pointer;box-shadow:var(--soft);transition:.16s}.person:hover{transform:translateY(-1px)}.person span{display:block;color:var(--muted);font-size:12px;font-weight:800;margin-top:4px}.person.active{background:#211411;color:#fff;border-color:#211411}.person.active span{color:rgba(255,255,255,.72)}.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--shadow)}h2{margin:0 0 8px;font-size:24px;letter-spacing:-.02em}.small{font-size:13px;color:var(--muted);line-height:1.45}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:13px 0}input[type=date],input[type=password],input[type=text]{border:1px solid var(--line);border-radius:15px;padding:12px;background:white;font-weight:800;color:var(--ink)}.btn{border:1px solid var(--line);background:white;border-radius:15px;padding:12px 14px;font-weight:950;cursor:pointer}.primary{border:0;background:linear-gradient(135deg,var(--hot),var(--orange));color:white;box-shadow:0 12px 24px rgba(240,68,56,.22)}.secondary{background:#211411;color:#fff;border-color:#211411}.goals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.goal{position:relative;border:1px solid var(--line);background:#fffaf6;border-radius:20px;padding:14px 12px 14px 54px;min-height:94px;cursor:pointer;display:block}.goal input{position:absolute;left:15px;top:22px;width:25px;height:25px;accent-color:var(--green)}.goal b{display:block;font-size:15px}.goal small{display:block;color:var(--muted);margin-top:4px;line-height:1.35}.goal .pts{display:inline-block;margin-top:9px;border:1px solid var(--line);border-radius:999px;padding:5px 8px;font-size:12px;font-weight:950;background:#fff;color:#8a3b12}.goal.done{background:linear-gradient(135deg,#ecfff5,#fffaf6);border-color:rgba(22,163,74,.48)}.score{font-size:52px;font-weight:1000;letter-spacing:-.06em;margin:6px 0 0}.meter{height:13px;background:#f3d5c2;border-radius:999px;overflow:hidden;margin:10px 0 16px}.meter span{height:100%;display:block;background:linear-gradient(90deg,var(--hot),var(--orange),var(--gold),var(--green));border-radius:999px}.leader{display:grid;gap:9px;margin-top:12px}.row{display:grid;grid-template-columns:38px 1fr auto;gap:9px;align-items:center;border:1px solid var(--line);background:#fffaf6;border-radius:18px;padding:11px}.rank{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--orange),var(--hot));color:#fff;font-weight:1000}.row:nth-child(1) .rank{background:linear-gradient(135deg,#ffd666,#f59e0b)}.row:nth-child(2) .rank{background:linear-gradient(135deg,#d8e0ea,#64748b)}.row:nth-child(3) .rank{background:linear-gradient(135deg,#d08a48,#8b4513)}.name{font-weight:1000}.mini{height:8px;background:#f3d5c2;border-radius:999px;overflow:hidden;margin-top:5px}.mini span{display:block;height:100%;background:linear-gradient(90deg,var(--hot),var(--orange),var(--green));border-radius:999px}.points{font-size:21px;font-weight:1000}.summaryBox{margin-top:14px}.summaryBox textarea{width:100%;min-height:78px;border:1px solid var(--line);border-radius:16px;padding:11px;background:white;color:var(--ink);resize:vertical}.week{margin-top:14px}.days{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.day{border:1px solid var(--line);border-radius:15px;background:#fffaf6;padding:8px;min-height:78px}.day b{font-size:11px}.day div{font-size:11px;color:var(--muted);margin-top:5px}.weeklyAllCard{margin-top:14px}.weeklyHeader{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;margin-bottom:12px}.weeklyHint{border:1px solid var(--line);background:#fff7eb;border-radius:999px;padding:8px 10px;color:#7a4a13;font-size:12px;font-weight:900;white-space:nowrap}.weeklyAll{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.weeklyPerson{border:1px solid var(--line);background:#fffaf6;border-radius:18px;padding:12px;min-height:162px}.weeklyPersonTop{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.weeklyPerson h3{margin:0;font-size:17px;letter-spacing:-.02em}.weeklyPts{font-size:24px;font-weight:1000;line-height:1;color:var(--hot)}.weeklyMeta{font-size:12px;color:var(--muted);font-weight:850;margin:8px 0}.weeklyTags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px}.weeklyTags span{border:1px solid var(--line);background:white;border-radius:999px;padding:4px 7px;font-size:11px;font-weight:900;color:#8a3b12}.weeklyDaily{display:grid;gap:5px}.weeklyDay{display:grid;grid-template-columns:34px 1fr auto;gap:6px;align-items:center;font-size:11px;color:var(--muted)}.weeklyDay b{color:var(--ink);font-size:11px}.weeklyDay strong{color:var(--ink);font-size:11px}.modal{position:fixed;inset:0;background:rgba(33,20,17,.42);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}.modal.show{display:flex}.modalBox{background:white;border-radius:24px;border:1px solid var(--line);box-shadow:var(--shadow);padding:20px;max-width:380px;width:100%}.modalBox h3{margin:0 0 7px;font-size:24px}.modalBox input{width:100%;margin:12px 0}.bottom{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.9);border-top:1px solid var(--line);backdrop-filter:blur(16px);z-index:20}.bottom .inner{max-width:1120px;margin:0 auto;padding:10px 13px;display:flex;gap:10px;align-items:center;justify-content:space-between}.bottom strong{font-size:14px}.bottom span{color:var(--muted);font-weight:800}.toast{position:fixed;right:16px;bottom:72px;background:#211411;color:#fff;border-radius:16px;padding:12px 14px;font-weight:850;box-shadow:var(--shadow);display:none;z-index:60}.toast.show{display:block}@media(max-width:1040px){.weeklyAll{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:880px){.grid{grid-template-columns:1fr}.people{grid-template-columns:repeat(2,1fr)}.goals{grid-template-columns:1fr}.days{grid-template-columns:repeat(2,1fr)}.weeklyHeader{flex-direction:column}.weeklyHint{white-space:normal}.bottom .inner{align-items:flex-start;flex-direction:column}.score{font-size:42px}}@media(max-width:430px){.people{grid-template-columns:1fr}.hero{padding:20px}.card{padding:15px}.weeklyAll{grid-template-columns:1fr}}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 12% 0%,#ffd08a 0 17%,transparent 36%),radial-gradient(circle at 90% 0%,#ffc0cf 0 14%,transparent 34%),linear-gradient(135deg,#fff8ef,#ffe7d4 50%,#fff)}
+    button,input,textarea{font:inherit}.app{max-width:1180px;margin:0 auto;padding:18px 13px 100px}
+    .hero{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;right:-65px;top:-75px;width:220px;height:220px;border-radius:50%;background:linear-gradient(135deg,rgba(240,68,56,.18),rgba(255,122,26,.16))}.kicker{font-size:12px;font-weight:950;color:var(--hot);text-transform:uppercase;letter-spacing:.14em}.hero h1{font-size:clamp(36px,7vw,68px);line-height:.9;margin:10px 0 10px;letter-spacing:-.06em}.hero p{color:var(--muted);margin:0;line-height:1.45;max-width:800px}.status{margin-top:13px;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:#fff7eb;border-radius:999px;padding:9px 12px;color:#7a4a13;font-size:13px;font-weight:850}.status.ok{background:#ecfdf3;color:#116b38}.status.bad{background:#fff1f2;color:#a11b1b}
+    .people{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin:14px 0}.person{border:1px solid var(--line);background:#fff;border-radius:20px;padding:14px 11px;text-align:left;font-weight:950;cursor:pointer;box-shadow:var(--soft);transition:.16s}.person:hover{transform:translateY(-1px)}.person span{display:block;color:var(--muted);font-size:12px;font-weight:800;margin-top:4px}.person.active{background:#211411;color:#fff;border-color:#211411}.person.active span{color:rgba(255,255,255,.72)}
+    .grid{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--shadow)}h2{margin:0 0 8px;font-size:24px;letter-spacing:-.02em}h3{margin:0}.small{font-size:13px;color:var(--muted);line-height:1.45}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:13px 0}input[type=date],input[type=password],input[type=text],input[type=number],input[type=url],textarea{border:1px solid var(--line);border-radius:15px;padding:12px;background:white;color:var(--ink);min-width:0}textarea{width:100%;min-height:86px;resize:vertical}.btn{border:1px solid var(--line);background:#fff;border-radius:15px;padding:12px 14px;font-weight:900;cursor:pointer;box-shadow:var(--soft)}.btn.primary{background:linear-gradient(135deg,var(--hot),var(--orange));color:#fff;border-color:transparent}.btn:disabled{opacity:.55;cursor:not-allowed}.goals{display:grid;gap:10px}.goal{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:20px;padding:13px;cursor:pointer}.goal.done{border-color:#fecaca;background:#fff5f0}.goal small{display:block;color:var(--muted);font-weight:700;margin-top:3px}.pts{font-weight:950;color:var(--hot);white-space:nowrap}.pts.zero{color:var(--muted)}.summaryBox,.week,.privateBox,.pinBox{margin-top:16px}.privateGrid,.pinGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:11px}.privateGrid .full,.pinGrid .full{grid-column:1/-1}.lockedPanel{padding:14px;border:1px dashed var(--line);border-radius:18px;background:#fff8ef;color:var(--muted);font-weight:800}.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:10px}.day{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;min-height:92px;font-size:12px}.day b{display:block;margin-bottom:5px}.day div{color:var(--muted);line-height:1.35}.score{font-size:70px;line-height:1;font-weight:1000;letter-spacing:-.08em;margin:10px 0;color:var(--hot)}.meter{height:12px;background:#f8ddce;border-radius:999px;overflow:hidden}.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--hot),var(--gold));border-radius:999px}.leader{display:grid;gap:10px;margin-top:15px}.row{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px}.rank{width:34px;height:34px;border-radius:12px;background:#fff0df;display:grid;place-items:center;font-weight:1000}.name{font-weight:950}.points{font-weight:1000;color:var(--hot)}.mini{height:8px;background:#f8ddce;border-radius:999px;margin-top:7px;overflow:hidden}.mini span{display:block;height:100%;background:linear-gradient(90deg,var(--orange),var(--gold));border-radius:999px}.winnerBanner{margin-bottom:14px;border:1px solid rgba(245,182,66,.55);background:linear-gradient(135deg,#fff8d8,#ffe3bc 46%,#fff);border-radius:22px;padding:16px;box-shadow:var(--soft)}.winnerBanner .label{font-size:12px;font-weight:950;color:#9a5a00;text-transform:uppercase;letter-spacing:.12em}.winnerBanner .winner{font-size:25px;font-weight:1000;margin-top:4px;letter-spacing:-.03em}.winnerBanner .sub{color:#7d6158;font-size:13px;margin-top:3px}.streakPill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#f5ecff;color:#4c1d95;padding:7px 10px;font-weight:950;font-size:12px;margin-top:8px}.weeklyAllCard{margin-top:14px}.weeklyHeader{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.weeklyHint{font-size:12px;color:var(--muted);font-weight:900;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 10px}.weeklyAll{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:13px}.weeklyPerson{background:#fff;border:1px solid var(--line);border-radius:22px;padding:14px}.weeklyPersonTop{display:flex;justify-content:space-between;gap:10px;align-items:center}.weeklyPts{background:#fff2df;color:#b24500;border-radius:13px;padding:8px 10px;font-weight:1000}.weeklyMeta{color:var(--muted);font-size:12px;font-weight:800;margin-top:4px}.weeklyTags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.weeklyTags span{background:#fff7eb;border:1px solid var(--line);border-radius:999px;padding:5px 8px;font-size:12px;font-weight:850}.weeklyDaily{display:grid;gap:6px}.weeklyDay{display:grid;grid-template-columns:38px 1fr auto;gap:8px;align-items:start;border-top:1px solid #f4dccb;padding-top:6px;font-size:12px}.weeklyDay span{color:var(--muted)}.bottom{position:fixed;left:0;right:0;bottom:0;padding:10px;background:rgba(255,250,245,.82);backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:10}.inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:13px}.toast{position:fixed;left:50%;bottom:72px;transform:translateX(-50%) translateY(20px);background:#211411;color:#fff;border-radius:999px;padding:12px 16px;font-weight:900;opacity:0;pointer-events:none;transition:.18s;z-index:20}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.modal{position:fixed;inset:0;background:rgba(33,20,17,.48);display:none;align-items:center;justify-content:center;padding:18px;z-index:30}.modal.show{display:flex}.modalBox{width:min(420px,100%);background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:var(--shadow);padding:20px}.modalBox h3{font-size:24px;margin-bottom:8px}.modalBox input{width:100%;margin-top:12px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.people{grid-template-columns:repeat(3,1fr)}.weeklyAll{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.app{padding-left:10px;padding-right:10px}.hero,.card{border-radius:22px;padding:16px}.people{grid-template-columns:repeat(2,1fr)}.days{grid-template-columns:1fr}.privateGrid,.pinGrid{grid-template-columns:1fr}.weeklyHeader{display:block}.weeklyHint{display:inline-block;margin-top:8px}.weeklyAll{grid-template-columns:1fr}.inner{display:block;line-height:1.7}.score{font-size:56px}}
   </style>
 </head>
 <body>
 <div class="app">
   <section class="hero">
-    <div class="kicker">5 friends • 30 days • shared leaderboard</div>
+    <div class="kicker">6 friends • 30 days • shared leaderboard</div>
     <h1>Spicy & Sweaty Challenge</h1>
-    <p>Pick your name, enter your PIN, choose the date, check your completed goals, then hit Save / Send. Everyone sees the same shared leaderboard.</p>
+    <p>Pick your name, enter your PIN, choose the date, check your completed goals, then hit Save / Send. Points, streaks, weekly winners, and private progress logs stay synced for the group.</p>
     <div id="status" class="status">Connecting to Firebase…</div>
   </section>
 
@@ -35,6 +41,19 @@
         <button class="btn primary" id="saveBtn" type="button">Save / Send Check-In</button>
       </div>
       <div class="goals" id="goals"></div>
+
+      <div class="privateBox">
+        <h2>Private Weigh-In / Photo Progress</h2>
+        <div class="small">Visible in the app only after unlocking this person. Add a weight, photo link, and quick private note for the selected date.</div>
+        <div id="privateProgress"></div>
+      </div>
+
+      <div class="pinBox">
+        <h2>Change My PIN</h2>
+        <div class="small">Unlock your name first, then set a new PIN for next time.</div>
+        <div id="pinChange"></div>
+      </div>
+
       <div class="summaryBox">
         <h2>Daily Summary</h2>
         <textarea id="summary" readonly></textarea>
@@ -47,8 +66,9 @@
     </section>
 
     <aside class="card">
+      <div id="winnerBanner" class="winnerBanner"></div>
       <h2>Leaderboard</h2>
-      <div class="small">Ranked by total challenge points. Perfect score is 192 points; extra strength/cardio can go above perfect.</div>
+      <div class="small">Ranked by total challenge points. No Scrolling Before Bed is tracked as a reminder only — 0 points.</div>
       <div class="score" id="currentScore">0</div>
       <div class="small">Current player points</div>
       <div class="meter"><span id="meter" style="width:0%"></span></div>
@@ -98,13 +118,13 @@ const firebaseConfig = {
   measurementId: "G-L7L0Q448KY"
 };
 
-const PEOPLE = ["Riley", "Cilly", "Margs", "Dyl", "J Money"];
-const PINS = {"Riley":"1111", "Cilly":"2222", "Margs":"3333", "Dyl":"4444", "J Money":"5555"};
+const PEOPLE = ["Riley", "Cilly", "Margs", "Fakkasha", "J Money", "Miss America"];
+const DEFAULT_PINS = {"Riley":"1111", "Cilly":"2222", "Margs":"3333", "Fakkasha":"4444", "J Money":"5555", "Miss America":"6666"};
 const GOALS = [
   {id:"strength", name:"Strength Training", short:"Strength", points:3, detail:"At least 30 minutes. Goal: 2x/week."},
   {id:"cardio", name:"Cardio", short:"Cardio", points:3, detail:"At least 40 minutes medium-high effort. Goal: 3x/week."},
   {id:"water", name:"Water", short:"Water", points:2, detail:"Drink at least 64oz of water."},
-  {id:"scroll", name:"No Scrolling Before Bed", short:"No scrolling", points:1, detail:"No scrolling at least 15 minutes before bed."},
+  {id:"scroll", name:"No Scrolling Before Bed", short:"No scrolling", points:0, detail:"Reminder only: no scrolling at least 15 minutes before bed. Tracked, no points."},
   {id:"clean", name:"Clean Eating", short:"Clean eating", points:2, detail:"Cleaner/natural foods as much as possible."},
   {id:"rest", name:"Rest / Recovery Day", short:"Rest", points:0, detail:"Rest and recover 1–2 days per week. Tracked, no points."},
   {id:"weigh", name:"Monday Weigh-In", short:"Weigh-in", points:2, detail:"Weigh yourself every Monday and log privately.", mondayOnly:true}
@@ -118,24 +138,66 @@ const todayISO = () => {
 const key = (person,date) => `${person}|${date}`;
 const isMonday = (date) => new Date(date + "T12:00:00").getDay() === 1;
 const fmt = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const escapeHtml = (str="") => String(str).replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
 
 let db, ref;
 let remote = {logs:{}};
 let draft = {logs:{}};
 let selected = localStorage.getItem("ssc_selected") || "Riley";
+if(selected === "Dyl"){ selected = "Fakkasha"; localStorage.setItem("ssc_selected", selected); }
 let unlocked = JSON.parse(localStorage.getItem("ssc_unlocked") || "{}");
+if(unlocked.Dyl){ unlocked.Fakkasha = true; delete unlocked.Dyl; localStorage.setItem("ssc_unlocked", JSON.stringify(unlocked)); }
 let pendingPerson = null;
 
 function clone(obj){ return JSON.parse(JSON.stringify(obj || {logs:{}})); }
-function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1500); }
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); }
+function pins(source=draft){ return source.logs?.__pins || {}; }
+function getPin(person, source=draft){ return pins(source)[person] || DEFAULT_PINS[person]; }
+function ensureLogs(){ if(!draft.logs) draft.logs = {}; }
+function migrateData(source){
+  source.logs = source.logs || {};
+  source._migratedDyl = false;
+  const logs = source.logs;
+  Object.keys(logs).forEach(k=>{
+    if(k.startsWith("Dyl|")){
+      const next = k.replace(/^Dyl\|/, "Fakkasha|");
+      logs[next] = {...(logs[next] || {}), ...(logs[k] || {})};
+      delete logs[k];
+      source._migratedDyl = true;
+    }
+  });
+  if(logs.__pins?.Dyl && !logs.__pins.Fakkasha){ logs.__pins.Fakkasha = logs.__pins.Dyl; delete logs.__pins.Dyl; source._migratedDyl = true; }
+  return source;
+}
+function logHasCheckIn(log,date){ return GOALS.some(g=>log?.[g.id] && (!g.mondayOnly || isMonday(date))); }
 function dayPoints(log,date){ return GOALS.reduce((sum,g)=> sum + (log?.[g.id] && (!g.mondayOnly || isMonday(date)) ? g.points : 0), 0); }
 function total(person, source=draft){ return Object.entries(source.logs || {}).filter(([k])=>k.startsWith(person+"|")).reduce((sum,[k,l])=>sum+dayPoints(l,k.split("|")[1]),0); }
 function checkedNames(log,date){ return GOALS.filter(g=>log?.[g.id] && (!g.mondayOnly || isMonday(date))).map(g=>g.short); }
 function getLog(source, person, date){ return source.logs?.[key(person,date)] || {}; }
-function summaryText(){ const d=$("date").value; const l=getLog(draft,selected,d); const names=checkedNames(l,d); return `${selected} - ${d}: ${names.length ? names.join(", ") : "No goals completed"} (${dayPoints(l,d)} pts)`; }
+function streak(person, source=draft){
+  let d = new Date(todayISO() + "T12:00:00");
+  let count = 0;
+  for(let i=0;i<370;i++){
+    const ds = fmt(d);
+    if(logHasCheckIn(getLog(source,person,ds), ds)){ count++; d.setDate(d.getDate()-1); }
+    else break;
+  }
+  return count;
+}
+function bestStreak(person, source=draft){
+  const dates = Object.entries(source.logs || {}).filter(([k,l])=>k.startsWith(person+"|") && logHasCheckIn(l,k.split("|")[1])).map(([k])=>k.split("|")[1]).sort();
+  let best=0, cur=0, prev=null;
+  dates.forEach(ds=>{
+    const d = new Date(ds + "T12:00:00");
+    if(prev){ const diff=(d-prev)/(1000*60*60*24); cur = diff === 1 ? cur+1 : 1; } else cur=1;
+    best=Math.max(best,cur); prev=d;
+  });
+  return best;
+}
+function summaryText(){ const d=$("date").value; const l=getLog(draft,selected,d); const names=checkedNames(l,d); return `${selected} - ${d}: ${names.length ? names.join(", ") : "No goals completed"} (${dayPoints(l,d)} pts) | Streak: ${streak(selected)} day${streak(selected)===1?"":"s"}`; }
 
 function renderPeople(){
-  $("people").innerHTML = PEOPLE.map(p=>`<button class="person ${p===selected?'active':''}" data-person="${p}">${p}<span>${total(p)} points</span></button>`).join("");
+  $("people").innerHTML = PEOPLE.map(p=>`<button class="person ${p===selected?'active':''}" data-person="${escapeHtml(p)}">${escapeHtml(p)}<span>${total(p)} pts • 🔥 ${streak(p)}</span></button>`).join("");
   document.querySelectorAll(".person").forEach(btn=>btn.addEventListener("click",()=>choosePerson(btn.dataset.person)));
 }
 function renderGoals(){
@@ -145,7 +207,7 @@ function renderGoals(){
   $("goals").innerHTML = GOALS.filter(g=>!g.mondayOnly || isMonday(d)).map(g=>`
     <label class="goal ${log[g.id]?'done':''}">
       <input type="checkbox" data-goal="${g.id}" ${log[g.id]?'checked':''} ${unlocked[selected]?'':'disabled'} />
-      <b>${g.name}</b><small>${g.detail}</small><span class="pts">${g.points} pts</span>
+      <b>${escapeHtml(g.name)}</b><small>${escapeHtml(g.detail)}</small><span class="pts ${g.points===0?'zero':''}">${g.points} pts</span>
     </label>`).join("");
   document.querySelectorAll("input[data-goal]").forEach(cb=>cb.addEventListener("change",()=>toggleGoal(cb.dataset.goal, cb.checked)));
   const names=checkedNames(log,d);
@@ -153,11 +215,37 @@ function renderGoals(){
   $("summary").value = summaryText();
   const score=total(selected);
   $("currentScore").textContent = score;
-  $("meter").style.width = `${Math.min(100, score/192*100)}%`;
+  $("meter").style.width = `${Math.min(100, score/180*100)}%`;
+}
+function renderPrivateProgress(){
+  const d=$("date").value; const log=getLog(draft,selected,d);
+  if(!unlocked[selected]){
+    $("privateProgress").innerHTML = `<div class="lockedPanel">Unlock ${escapeHtml(selected)} to view or edit private progress.</div>`;
+    return;
+  }
+  $("privateProgress").innerHTML = `<div class="privateGrid">
+    <label><div class="small"><b>Weight</b></div><input id="weightInput" type="number" step="0.1" placeholder="ex: 184.5" value="${escapeHtml(log._weight || "")}" /></label>
+    <label><div class="small"><b>Photo link</b></div><input id="photoInput" type="url" placeholder="Paste iCloud/Google photo link" value="${escapeHtml(log._photo || "")}" /></label>
+    <label class="full"><div class="small"><b>Private note</b></div><textarea id="noteInput" placeholder="Progress note, measurements, how you felt...">${escapeHtml(log._note || "")}</textarea></label>
+    ${log._photo ? `<div class="full small"><b>Saved photo:</b> <a href="${escapeHtml(log._photo)}" target="_blank" rel="noopener">open progress photo</a></div>` : ""}
+  </div>`;
+  ["weightInput","photoInput","noteInput"].forEach(id=>$(id).addEventListener("input",updatePrivateProgress));
+}
+function renderPinChange(){
+  if(!unlocked[selected]){
+    $("pinChange").innerHTML = `<div class="lockedPanel">Unlock ${escapeHtml(selected)} before changing this PIN.</div>`;
+    return;
+  }
+  $("pinChange").innerHTML = `<div class="pinGrid">
+    <input id="newPin" type="password" inputmode="numeric" placeholder="New PIN" />
+    <input id="confirmPin" type="password" inputmode="numeric" placeholder="Confirm new PIN" />
+    <button class="btn primary full" id="changePinBtn" type="button">Save New PIN</button>
+  </div>`;
+  $("changePinBtn").addEventListener("click",changePin);
 }
 function renderLeader(){
-  const rows = PEOPLE.map(p=>({p,score:total(p)})).sort((a,b)=>b.score-a.score);
-  $("leader").innerHTML = rows.map((r,i)=>`<div class="row"><div class="rank">${i+1}</div><div><div class="name">${r.p}</div><div class="mini"><span style="width:${Math.min(100,r.score/192*100)}%"></span></div></div><div class="points">${r.score}</div></div>`).join("");
+  const rows = PEOPLE.map(p=>({p,score:total(p),streak:streak(p),best:bestStreak(p)})).sort((a,b)=>b.score-a.score || b.streak-a.streak);
+  $("leader").innerHTML = rows.map((r,i)=>`<div class="row"><div class="rank">${i+1}</div><div><div class="name">${escapeHtml(r.p)}</div><div class="small">🔥 ${r.streak} current • Best ${r.best}</div><div class="mini"><span style="width:${Math.min(100,r.score/180*100)}%"></span></div></div><div class="points">${r.score}</div></div>`).join("");
 }
 function selectedWeekDays(){
   const base = new Date($("date").value + "T12:00:00");
@@ -167,12 +255,21 @@ function selectedWeekDays(){
   for(let i=0;i<7;i++){ const d=new Date(base); d.setDate(base.getDate()+i); days.push(d); }
   return days;
 }
+function weeklyScore(person, days){ return days.reduce((sum,d)=>sum+dayPoints(getLog(draft,person,fmt(d)),fmt(d)),0); }
+function renderWinnerBanner(){
+  const days = selectedWeekDays();
+  const rows = PEOPLE.map(p=>({p,score:weeklyScore(p,days)})).sort((a,b)=>b.score-a.score);
+  const top = rows[0];
+  const ties = rows.filter(r=>r.score===top.score).map(r=>r.p);
+  const title = top.score > 0 ? (ties.length > 1 ? `Tie: ${ties.join(" + ")}` : `${top.p}`) : "No winner yet";
+  $("winnerBanner").innerHTML = `<div class="label">🏆 Weekly Winner Banner</div><div class="winner">${escapeHtml(title)}</div><div class="sub">${fmt(days[0])} to ${fmt(days[6])} • ${top.score} pts</div>`;
+}
 function renderWeek(){
   const days = selectedWeekDays();
   $("weekRange").textContent = `${fmt(days[0])} to ${fmt(days[6])}`;
   $("days").innerHTML = days.map(d=>{
     const ds=fmt(d); const log=getLog(draft,selected,ds); const names=checkedNames(log,ds);
-    return `<div class="day"><b>${d.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})}</b><div>${names.join(", ") || "None"}</div><div>${dayPoints(log,ds)} pts</div></div>`;
+    return `<div class="day"><b>${d.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})}</b><div>${escapeHtml(names.join(", ") || "None")}</div><div>${dayPoints(log,ds)} pts</div>${log._weight && unlocked[selected] ? `<div>⚖️ ${escapeHtml(log._weight)}</div>` : ""}${log._photo && unlocked[selected] ? `<div>📸 Photo saved</div>` : ""}</div>`;
   }).join("");
 }
 function renderWeeklyAll(){
@@ -186,16 +283,17 @@ function renderWeeklyAll(){
     const weeklyPoints = daily.reduce((sum,d)=>sum+d.points,0);
     const daysLogged = daily.filter(d=>d.names.length).length;
     const counts = GOALS.map(g=>({short:g.short,count:daily.filter(d=>d.names.includes(g.short)).length})).filter(g=>g.count);
-    const tags = counts.length ? counts.map(g=>`<span>${g.short} ×${g.count}</span>`).join("") : `<span>No check-ins yet</span>`;
+    const tags = counts.length ? counts.map(g=>`<span>${escapeHtml(g.short)} ×${g.count}</span>`).join("") : `<span>No check-ins yet</span>`;
     return `<article class="weeklyPerson">
-      <div class="weeklyPersonTop"><h3>${person}</h3><div class="weeklyPts">${weeklyPoints}</div></div>
+      <div class="weeklyPersonTop"><h3>${escapeHtml(person)}</h3><div class="weeklyPts">${weeklyPoints}</div></div>
       <div class="weeklyMeta">${daysLogged}/7 days checked in • ${weeklyPoints} pts this week</div>
+      <div class="streakPill">🔥 ${streak(person)} day streak</div>
       <div class="weeklyTags">${tags}</div>
-      <div class="weeklyDaily">${daily.map(d=>`<div class="weeklyDay"><b>${d.label}</b><span>${d.names.join(", ") || "None"}</span><strong>${d.points}</strong></div>`).join("")}</div>
+      <div class="weeklyDaily">${daily.map(d=>`<div class="weeklyDay"><b>${escapeHtml(d.label)}</b><span>${escapeHtml(d.names.join(", ") || "None")}</span><strong>${d.points}</strong></div>`).join("")}</div>
     </article>`;
   }).join("");
 }
-function render(){ renderPeople(); renderGoals(); renderLeader(); renderWeek(); renderWeeklyAll(); }
+function render(){ renderPeople(); renderGoals(); renderPrivateProgress(); renderPinChange(); renderLeader(); renderWinnerBanner(); renderWeek(); renderWeeklyAll(); }
 
 function choosePerson(person){
   selected = person; localStorage.setItem("ssc_selected", selected);
@@ -206,7 +304,7 @@ function openPin(person){ pendingPerson=person; $("pinTitle").textContent=`Enter
 function closePin(){ $("pinModal").classList.remove("show"); pendingPerson=null; }
 function submitPin(){
   if(!pendingPerson) return;
-  if($("pinInput").value === PINS[pendingPerson]){
+  if($("pinInput").value === getPin(pendingPerson)){
     unlocked[pendingPerson]=true; localStorage.setItem("ssc_unlocked", JSON.stringify(unlocked)); toast(`${pendingPerson} unlocked`); closePin(); render();
   } else toast("Wrong PIN");
 }
@@ -214,13 +312,38 @@ function toggleGoal(goal, checked){
   if(!unlocked[selected]){ openPin(selected); return; }
   const d=$("date").value;
   const k=key(selected,d);
+  ensureLogs();
   draft.logs[k] = {...(draft.logs[k] || {})};
   draft.logs[k][goal] = checked;
   render();
 }
+function updatePrivateProgress(){
+  if(!unlocked[selected]) return;
+  const d=$("date").value;
+  const k=key(selected,d);
+  ensureLogs();
+  draft.logs[k] = {...(draft.logs[k] || {})};
+  draft.logs[k]._weight = $("weightInput").value.trim();
+  draft.logs[k]._photo = $("photoInput").value.trim();
+  draft.logs[k]._note = $("noteInput").value.trim();
+  $("summary").value = summaryText();
+}
+function changePin(){
+  if(!unlocked[selected]){ openPin(selected); return; }
+  const next = $("newPin").value.trim();
+  const confirm = $("confirmPin").value.trim();
+  if(next.length < 4){ toast("PIN must be at least 4 digits"); return; }
+  if(next !== confirm){ toast("PINs do not match"); return; }
+  ensureLogs();
+  draft.logs.__pins = {...(draft.logs.__pins || {}), [selected]: next};
+  $("newPin").value = ""; $("confirmPin").value = "";
+  toast("New PIN ready. Hit Save / Send.");
+}
 async function saveCheckIn(){
   if(!unlocked[selected]){ openPin(selected); return; }
   try{
+    draft = migrateData(draft);
+    delete draft._migratedDyl;
     await setDoc(ref, {...draft, updatedAt: serverTimestamp()}, {merge:false});
     const txt=summaryText();
     $("summary").value = txt; $("summary").focus(); $("summary").select();
@@ -246,12 +369,17 @@ async function boot(){
     ref = doc(db, "challenge_state", "spicy_sweaty_2026");
     const snap = await getDoc(ref);
     if(!snap.exists()) await setDoc(ref, {logs:{}, createdAt: serverTimestamp(), updatedAt: serverTimestamp()});
-    onSnapshot(ref, (docSnap)=>{
-      remote = docSnap.exists() ? docSnap.data() : {logs:{}};
+    onSnapshot(ref, async (docSnap)=>{
+      remote = docSnap.exists() ? migrateData(docSnap.data()) : {logs:{}};
+      const migrated = !!remote._migratedDyl;
+      delete remote._migratedDyl;
       draft = clone(remote);
       $("status").className="status ok";
       $("status").textContent="Connected. Shared leaderboard is live.";
       render();
+      if(docSnap.exists() && migrated){
+        try{ await setDoc(ref, {...remote, updatedAt: serverTimestamp()}, {merge:false}); } catch(e){ console.warn("Migration save skipped", e); }
+      }
     }, (err)=>{
       console.error(err); $("status").className="status bad"; $("status").textContent="Firebase connected, but Firestore read failed. Check rules."; render();
     });
