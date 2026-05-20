@@ -86,8 +86,8 @@ const firebaseConfig = {
   measurementId: "G-L7L0Q448KY"
 };
 
-const PEOPLE = ["Riley", "Cilly", "Margs", "Fakkasha", "J Money", "Miss America", "Lawn Daddy"];
-const DEFAULT_PINS = {"Riley":"1111", "Cilly":"2222", "Margs":"3333", "Fakkasha":"4444", "J Money":"5555", "Miss America":"6666", "Lawn Daddy":"7777"};
+const PEOPLE = ["Riley", "Cilly", "Mighty Mouse", "Fakkasha", "J Money", "Miss America", "Lawn Daddy"];
+const DEFAULT_PINS = {"Riley":"1111", "Cilly":"2222", "Mighty Mouse":"3333", "Fakkasha":"4444", "J Money":"5555", "Miss America":"6666", "Lawn Daddy":"7777"};
 const GOALS = [
   {id:"strength", icon:"🏋️", name:"Strength Training", short:"Strength", points:3, target:2, detail:"At least 30 minutes. Goal: 2x/week."},
   {id:"cardio", icon:"🏃", name:"Cardio", short:"Cardio", points:3, target:3, detail:"At least 40 minutes medium-high effort. Goal: 3x/week."},
@@ -132,6 +132,7 @@ const BONUS_CHALLENGES = [
 ];
 const REACTS = ["🔥","🐐","😤","💀","🤡","🚨"];
 const WELLNESS_PEOPLE = ["Miss America", "Lawn Daddy"];
+const RENAMES = {"Dyl":"Fakkasha", "Margs":"Mighty Mouse"};
 const WELLNESS_JOKES = [
   {saunaTitle:"Congratulations, you just became human beef jerky.", saunaBody:"Please drink water before your organs start filing a formal complaint.", plungeTitle:"Optional villain origin story: become a fancy popsicle.", plungeBody:"Log the minutes before the soul sends a strongly worded email."},
   {saunaTitle:"Sweat session complete: body now in raisin mode.", saunaBody:"Hydrate like you owe water money.", plungeTitle:"Cold plunge: premium character development.", plungeBody:"Enter human. Exit emotionally refrigerated."},
@@ -144,16 +145,19 @@ const WELLNESS_JOKES = [
 const $ = (id) => document.getElementById(id);
 const todayISO = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; };
 const key = (person,date) => `${person}|${date}`;
-const isMonday = (date) => new Date(date + "T12:00:00").getDay() === 1;
+const dateFromISO = (date) => new Date((date || todayISO()) + "T12:00:00");
+const isMonday = (date) => dateFromISO(date).getDay() === 1;
 const fmt = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 const esc = (str="") => String(str).replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
 let db, ref, activeTab="today";
 let remote = {logs:{}};
 let draft = {logs:{}};
 let selected = localStorage.getItem("ssc_selected") || "Riley";
-if(selected === "Dyl"){ selected = "Fakkasha"; localStorage.setItem("ssc_selected", selected); }
+if(RENAMES[selected]){ selected = RENAMES[selected]; localStorage.setItem("ssc_selected", selected); }
 let unlocked = JSON.parse(localStorage.getItem("ssc_unlocked") || "{}");
-if(unlocked.Dyl){ unlocked.Fakkasha = true; delete unlocked.Dyl; localStorage.setItem("ssc_unlocked", JSON.stringify(unlocked)); }
+let unlockedMigrated = false;
+Object.entries(RENAMES).forEach(([oldName,newName])=>{ if(unlocked[oldName]){ unlocked[newName] = true; delete unlocked[oldName]; unlockedMigrated = true; }});
+if(unlockedMigrated) localStorage.setItem("ssc_unlocked", JSON.stringify(unlocked));
 let pendingPerson = null;
 function clone(obj){ return JSON.parse(JSON.stringify(obj || {logs:{}})); }
 function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); }
@@ -161,7 +165,7 @@ function ensureLogs(){ if(!draft.logs) draft.logs = {}; }
 function pins(source=draft){ return source.logs?.__pins || {}; }
 function getPin(person, source=draft){ return pins(source)[person] || DEFAULT_PINS[person]; }
 function reactions(source=draft){ return source.logs?.__reactions || {}; }
-function migrateData(source){ source.logs = source.logs || {}; source._migratedDyl=false; const logs=source.logs; Object.keys(logs).forEach(k=>{ if(k.startsWith("Dyl|")){ const next=k.replace(/^Dyl\|/,"Fakkasha|"); logs[next]={...(logs[next]||{}),...(logs[k]||{})}; delete logs[k]; source._migratedDyl=true; }}); if(logs.__pins?.Dyl && !logs.__pins.Fakkasha){ logs.__pins.Fakkasha=logs.__pins.Dyl; delete logs.__pins.Dyl; source._migratedDyl=true; } return source; }
+function migrateData(source){ source.logs = source.logs || {}; source._migratedNames=false; const logs=source.logs; Object.entries(RENAMES).forEach(([oldName,newName])=>{ Object.keys(logs).forEach(k=>{ if(k.startsWith(oldName+"|")){ const next=k.replace(oldName+"|",newName+"|"); logs[next]={...(logs[next]||{}),...(logs[k]||{})}; delete logs[k]; source._migratedNames=true; }}); if(logs.__pins?.[oldName] && !logs.__pins[newName]){ logs.__pins[newName]=logs.__pins[oldName]; delete logs.__pins[oldName]; source._migratedNames=true; } if(logs.__reactions){ Object.keys(logs.__reactions).forEach(k=>{ if(k.startsWith(oldName+"|")){ const next=k.replace(oldName+"|",newName+"|"); logs.__reactions[next]={...(logs.__reactions[next]||{}),...(logs.__reactions[k]||{})}; delete logs.__reactions[k]; source._migratedNames=true; }}); } }); return source; }
 function getLog(source, person, date){ return source.logs?.[key(person,date)] || {}; }
 function dailyBonus(date){ const idx=[...date].reduce((s,c)=>s+c.charCodeAt(0),0)%BONUS_CHALLENGES.length; const [name,detail]=BONUS_CHALLENGES[idx]; return {id:"bonus", icon:"⚡", name:`Daily Bonus: ${name}`, short:"Daily bonus", points:3, target:7, detail}; }
 function goalsForDate(date){ return [...GOALS.filter(g=>!g.mondayOnly || isMonday(date)), dailyBonus(date)]; }
@@ -169,10 +173,10 @@ function logHasCheckIn(log,date){ return goalsForDate(date).some(g=>log?.[g.id] 
 function dayPoints(log,date){ return goalsForDate(date).reduce((sum,g)=> sum + (log?.[g.id] && (!g.mondayOnly || isMonday(date)) ? g.points : 0), 0); }
 function checkedNames(log,date){ return goalsForDate(date).filter(g=>log?.[g.id] && (!g.mondayOnly || isMonday(date))).map(g=>g.short); }
 function total(person, source=draft){ return Object.entries(source.logs || {}).filter(([k])=>k.startsWith(person+"|")).reduce((sum,[k,l])=>sum+dayPoints(l,k.split("|")[1]),0); }
-function selectedWeekDays(){ const base=new Date($("date").value + "T12:00:00"); const diff=(base.getDay()+6)%7; base.setDate(base.getDate()-diff); return Array.from({length:7},(_,i)=>{const d=new Date(base); d.setDate(base.getDate()+i); return d;}); }
+function selectedWeekDays(){ const base=dateFromISO($("date").value); const diff=base.getDay(); base.setDate(base.getDate()-diff); return Array.from({length:7},(_,i)=>{const d=new Date(base); d.setDate(base.getDate()+i); return d;}); }
 function streak(person, source=draft){ let d=new Date(todayISO()+"T12:00:00"), count=0; for(let i=0;i<370;i++){ const ds=fmt(d); if(logHasCheckIn(getLog(source,person,ds),ds)){ count++; d.setDate(d.getDate()-1); } else break; } return count; }
 function bestStreak(person, source=draft){ const dates=Object.entries(source.logs||{}).filter(([k,l])=>k.startsWith(person+"|")&&logHasCheckIn(l,k.split("|")[1])).map(([k])=>k.split("|")[1]).sort(); let best=0,cur=0,prev=null; dates.forEach(ds=>{ const d=new Date(ds+"T12:00:00"); if(prev){ const diff=(d-prev)/(1000*60*60*24); cur=diff===1?cur+1:1; } else cur=1; best=Math.max(best,cur); prev=d; }); return best; }
-function weeklyStats(person, days=selectedWeekDays()){ const daily=days.map(d=>{const ds=fmt(d), log=getLog(draft,person,ds), names=checkedNames(log,ds); return {date:ds,label:d.toLocaleDateString(undefined,{weekday:"short"}),names,points:dayPoints(log,ds),log};}); return {daily, points:daily.reduce((s,d)=>s+d.points,0), daysLogged:daily.filter(d=>d.names.length).length}; }
+function weeklyStats(person, days=selectedWeekDays()){ const daily=days.map(d=>{const ds=fmt(d), log=getLog(draft,person,ds), names=checkedNames(log,ds); return {date:ds,label:d.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"}),names,points:dayPoints(log,ds),log};}); return {daily, points:daily.reduce((s,d)=>s+d.points,0), daysLogged:daily.filter(d=>d.names.length).length}; }
 function wellnessDay(log){ return !!(log?._saunaUsed || log?._coldPlungeUsed); }
 function wellnessStreak(person, source=draft){ let d=new Date(todayISO()+"T12:00:00"), count=0; for(let i=0;i<370;i++){ const ds=fmt(d); if(wellnessDay(getLog(source,person,ds))){ count++; d.setDate(d.getDate()-1); } else break; } return count; }
 function wellnessStats(person, days=selectedWeekDays()){ const logs=days.map(d=>getLog(draft,person,fmt(d))); return {saunaDays:logs.filter(l=>l._saunaUsed).length, plungeDays:logs.filter(l=>l._coldPlungeUsed).length, comboDays:logs.filter(l=>l._saunaUsed&&l._coldPlungeUsed).length, saunaMinutes:logs.reduce((s,l)=>s+(Number(l._saunaMinutes)||0),0), plungeMinutes:logs.reduce((s,l)=>s+(Number(l._coldPlungeMinutes)||0),0), streak:wellnessStreak(person)}; }
@@ -212,11 +216,11 @@ function updatePrivateProgress(){ if(!unlocked[selected]) return; const d=$("dat
 function updateSaunaLog(){ if(!WELLNESS_PEOPLE.includes(selected) || !unlocked[selected]) return; const d=$("date").value,k=key(selected,d); ensureLogs(); draft.logs[k]={...(draft.logs[k]||{})}; draft.logs[k]._saunaUsed=$("saunaUsed").checked; draft.logs[k]._saunaTemp=$("saunaTemp").value.trim(); draft.logs[k]._saunaMinutes=$("saunaMinutes").value.trim(); draft.logs[k]._coldPlungeUsed=$("coldPlungeUsed").checked; draft.logs[k]._coldPlungeMinutes=$("coldPlungeMinutes").value.trim(); $("summary").value=summaryText(); renderWeek(); }
 function changePin(){ if(!unlocked[selected]){ openPin(selected); return; } const next=$("newPin").value.trim(), confirm=$("confirmPin").value.trim(); if(next.length<4){ toast("PIN must be at least 4 digits"); return; } if(next!==confirm){ toast("PINs do not match"); return; } ensureLogs(); draft.logs.__pins={...(draft.logs.__pins||{}),[selected]:next}; $("newPin").value=""; $("confirmPin").value=""; toast("New PIN ready. Hit Save / Send."); }
 function addReaction(emoji){ const k=key(selected,$("date").value); ensureLogs(); draft.logs.__reactions={...(draft.logs.__reactions||{})}; draft.logs.__reactions[k]={...(draft.logs.__reactions[k]||{})}; draft.logs.__reactions[k][emoji]=(draft.logs.__reactions[k][emoji]||0)+1; renderReactions(); saveQuiet("Reaction saved"); }
-async function saveQuiet(msg="Saved"){ try{ draft=migrateData(draft); delete draft._migratedDyl; await setDoc(ref,{...draft,updatedAt:serverTimestamp()},{merge:false}); toast(msg); } catch(e){ console.error(e); toast("Save failed. Check connection."); } }
+async function saveQuiet(msg="Saved"){ try{ draft=migrateData(draft); delete draft._migratedNames; await setDoc(ref,{...draft,updatedAt:serverTimestamp()},{merge:false}); toast(msg); } catch(e){ console.error(e); toast("Save failed. Check connection."); } }
 async function saveCheckIn(){ if(!unlocked[selected]){ openPin(selected); return; } await saveQuiet("Saved + copied summary"); const txt=summaryText(); $("summary").value=txt; $("summary").focus(); $("summary").select(); try{ await navigator.clipboard.writeText(txt); } catch{} }
 function clearDay(){ if(!unlocked[selected]){ openPin(selected); return; } delete draft.logs[key(selected,$("date").value)]; render(); toast("Cleared locally. Hit Save / Send."); }
 function switchTab(tab){ activeTab=tab; document.querySelectorAll('.tabBtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab)); document.querySelectorAll('.tabPanel').forEach(p=>p.classList.toggle('active',p.id===`tab-${tab}`)); window.scrollTo({top:0,behavior:'smooth'}); }
-async function boot(){ $("date").value=todayISO(); document.querySelectorAll('.tabBtn').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab))); $("pinSubmit").addEventListener("click",submitPin); $("pinCancel").addEventListener("click",closePin); $("pinInput").addEventListener("keydown",e=>{if(e.key==="Enter") submitPin();}); $("saveBtn").addEventListener("click",saveCheckIn); $("clearBtn").addEventListener("click",clearDay); $("date").addEventListener("change",render); try{ const app=initializeApp(firebaseConfig); db=getFirestore(app); ref=doc(db,"challenge_state","spicy_sweaty_2026"); const snap=await getDoc(ref); if(!snap.exists()) await setDoc(ref,{logs:{},createdAt:serverTimestamp(),updatedAt:serverTimestamp()}); onSnapshot(ref, async (docSnap)=>{ remote=docSnap.exists()?migrateData(docSnap.data()):{logs:{}}; const migrated=!!remote._migratedDyl; delete remote._migratedDyl; draft=clone(remote); $("status").className="status ok"; $("status").textContent="Connected. Shared leaderboard is live."; render(); if(docSnap.exists()&&migrated){ try{ await setDoc(ref,{...remote,updatedAt:serverTimestamp()},{merge:false}); } catch(e){ console.warn("Migration save skipped",e); } } },err=>{ console.error(err); $("status").className="status bad"; $("status").textContent="Firebase connected, but Firestore read failed. Check rules."; render(); }); } catch(e){ console.error(e); $("status").className="status bad"; $("status").textContent="App loaded, but Firebase connection failed."; render(); } }
+async function boot(){ $("date").value=todayISO(); document.querySelectorAll('.tabBtn').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab))); $("pinSubmit").addEventListener("click",submitPin); $("pinCancel").addEventListener("click",closePin); $("pinInput").addEventListener("keydown",e=>{if(e.key==="Enter") submitPin();}); $("saveBtn").addEventListener("click",saveCheckIn); $("clearBtn").addEventListener("click",clearDay); $("date").addEventListener("change",render); try{ const app=initializeApp(firebaseConfig); db=getFirestore(app); ref=doc(db,"challenge_state","spicy_sweaty_2026"); const snap=await getDoc(ref); if(!snap.exists()) await setDoc(ref,{logs:{},createdAt:serverTimestamp(),updatedAt:serverTimestamp()}); onSnapshot(ref, async (docSnap)=>{ remote=docSnap.exists()?migrateData(docSnap.data()):{logs:{}}; const migrated=!!remote._migratedNames; delete remote._migratedNames; draft=clone(remote); $("status").className="status ok"; $("status").textContent="Connected. Shared leaderboard is live."; render(); if(docSnap.exists()&&migrated){ try{ await setDoc(ref,{...remote,updatedAt:serverTimestamp()},{merge:false}); } catch(e){ console.warn("Migration save skipped",e); } } },err=>{ console.error(err); $("status").className="status bad"; $("status").textContent="Firebase connected, but Firestore read failed. Check rules."; render(); }); } catch(e){ console.error(e); $("status").className="status bad"; $("status").textContent="App loaded, but Firebase connection failed."; render(); } }
 boot();
 </script>
 </body>
