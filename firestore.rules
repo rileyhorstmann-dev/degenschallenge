@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /challenge_state/{docId} {
       allow read: if true;
-      allow create, update: if docId == 'spicy_sweaty_2026'
+      allow create, update: if docId in ['spicy_sweaty_2026', 'spicy_sweaty_2026_june15']
         && request.resource.data.keys().hasOnly(['logs', 'createdAt', 'updatedAt'])
         && request.resource.data.logs is map;
     }
