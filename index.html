@@ -93,8 +93,8 @@ const firebaseConfig = {
 const CHALLENGE_START = "2026-09-28";
 const CHALLENGE_END = "2026-10-27";
 const CHALLENGE_DOC = "spicy_sweaty_2026";
-const PEOPLE = ["Riley", "Cilly", "Mighty Mouse", "Fakkasha", "J Money", "Miss America", "Lawn Daddy", "Randy", "Alexis"];
-const DEFAULT_PINS = {"Riley":"1111", "Cilly":"2222", "Mighty Mouse":"3333", "Fakkasha":"4444", "J Money":"5555", "Miss America":"6666", "Lawn Daddy":"7777", "Randy":"8888", "Alexis":"9999"};
+const PEOPLE = ["Riley", "Cilly", "Mighty Mouse", "Fakkasha", "J Money", "Miss America", "Lawn Daddy"];
+const DEFAULT_PINS = {"Riley":"1111", "Cilly":"2222", "Mighty Mouse":"3333", "Fakkasha":"4444", "J Money":"5555", "Miss America":"6666", "Lawn Daddy":"7777"};
 const GOALS = [
   {id:"strength", icon:"🏋️", name:"Strength Training", short:"Strength", points:3, target:2, detail:"At least 30 minutes. Goal: 2x/week."},
   {id:"cardio", icon:"🏃", name:"Cardio", short:"Cardio", points:3, target:3, detail:"At least 30 minutes medium-high effort. Goal: 3x/week."},
@@ -187,14 +187,17 @@ let remote = {logs:{}};
 let draft = {logs:{}};
 let selected = localStorage.getItem("ssc_selected") || "Riley";
 if(RENAMES[selected]){ selected = RENAMES[selected]; localStorage.setItem("ssc_selected", selected); }
+if(!PEOPLE.includes(selected)){ selected = "Riley"; localStorage.setItem("ssc_selected", selected); }
 let unlocked = JSON.parse(localStorage.getItem("ssc_unlocked") || "{}");
 let unlockedMigrated = false;
 Object.entries(RENAMES).forEach(([oldName,newName])=>{ if(unlocked[oldName]){ unlocked[newName] = true; delete unlocked[oldName]; unlockedMigrated = true; }});
+Object.keys(unlocked).forEach(name=>{ if(!PEOPLE.includes(name)){ delete unlocked[name]; unlockedMigrated = true; }});
 if(unlockedMigrated) localStorage.setItem("ssc_unlocked", JSON.stringify(unlocked));
 let pendingPerson = null;
 let pendingAfterUnlock = null;
 let cheerSender = localStorage.getItem("ssc_cheer_sender") || "";
 if(RENAMES[cheerSender]){ cheerSender = RENAMES[cheerSender]; localStorage.setItem("ssc_cheer_sender", cheerSender); }
+if(cheerSender && !PEOPLE.includes(cheerSender)){ cheerSender = ""; localStorage.setItem("ssc_cheer_sender", cheerSender); }
 function clone(obj){ return JSON.parse(JSON.stringify(obj || {logs:{}})); }
 function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); }
 function ensureLogs(){ if(!draft.logs) draft.logs = {}; }
