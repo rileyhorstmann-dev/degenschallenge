@@ -22,6 +22,72 @@
 .messageBoard{margin-top:14px}.composer{display:grid;gap:10px;margin-top:12px}.composer textarea{min-height:92px}.mentionWrap{position:relative}.mentionPicker{display:none;flex-wrap:wrap;gap:7px;margin-top:8px}.mentionPicker.show{display:flex}.mentionPicker button{border:1px solid var(--line);background:rgba(255,255,255,.12);color:var(--ink);border-radius:999px;padding:7px 9px;font-size:12px;font-weight:1000}.messageList{display:grid;gap:10px;margin-top:14px}.msg{background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:22px;padding:13px}.msgTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.msgAuthor{font-weight:1000}.msgTime{font-size:11px;color:var(--muted);font-weight:850}.msgText{margin-top:8px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}.mentionChip{display:inline-block;background:rgba(110,168,255,.18);border:1px solid rgba(110,168,255,.34);border-radius:999px;padding:1px 6px;color:#bfdbfe;font-weight:1000}.msgActions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.msgActions button{border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--ink);border-radius:999px;padding:7px 9px;font-size:12px;font-weight:1000}
     @media(max-width:940px){.grid{grid-template-columns:1fr}.people{grid-template-columns:repeat(3,1fr)}.weeklyAll,.statusGrid,.progressGrid,.shameGrid,.badgeGrid,.reactionGrid,.saunaGrid{grid-template-columns:repeat(2,1fr)}.topStats{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.saveBar{position:sticky;bottom:76px;z-index:7}.app{padding-left:10px;padding-right:10px}.hero,.card{border-radius:22px;padding:16px}.hero h1{font-size:44px}.people{grid-template-columns:repeat(2,1fr)}.tabs{grid-template-columns:repeat(4,1fr);gap:4px}.tabBtn{font-size:12px;padding:10px 4px}.days,.privateGrid,.pinGrid,.saunaGrid,.weeklyAll,.statusGrid,.progressGrid,.shameGrid,.badgeGrid,.reactionGrid{grid-template-columns:1fr}.inner{display:block;line-height:1.7}.score{font-size:56px}.progressRing{width:104px;height:104px}.hideMobile{display:none}.hideDesktop{display:block}}
+
+    /* 80s neon refresh: black base, glowing cards, high-contrast readable text */
+    :root{
+      --bg:#030008; --bg2:#090015;
+      --ink:#fffaff; --muted:rgba(245,232,255,.80); --line:rgba(0,245,255,.38);
+      --hot:#ff2bd6; --orange:#ff8a00; --gold:#ffe66d; --green:#39ff14; --blue:#00f5ff; --purple:#9d4dff;
+      --danger:#ff3b6b; --shadow:0 24px 80px rgba(0,0,0,.72); --soft:0 12px 30px rgba(0,0,0,.38);
+    }
+    body{
+      background:
+        radial-gradient(circle at 12% -6%,rgba(255,43,214,.34) 0 18%,transparent 36%),
+        radial-gradient(circle at 92% 5%,rgba(0,245,255,.30) 0 16%,transparent 34%),
+        radial-gradient(circle at 52% 108%,rgba(57,255,20,.16) 0 18%,transparent 38%),
+        linear-gradient(160deg,#020006 0%,#080011 48%,#02030a 100%);
+    }
+    body:before{
+      opacity:.34;
+      background:
+        linear-gradient(115deg,transparent 0 18%,rgba(255,43,214,.46) 19%,transparent 20% 42%,rgba(0,245,255,.36) 43%,transparent 44% 100%),
+        repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 6px);
+      mix-blend-mode:screen;
+    }
+    .glass{
+      background:linear-gradient(145deg,rgba(12,5,26,.92),rgba(2,3,10,.82));
+      border:1px solid rgba(0,245,255,.34);
+      box-shadow:0 22px 80px rgba(0,0,0,.70),0 0 28px rgba(0,245,255,.15),inset 0 0 24px rgba(255,43,214,.045);
+    }
+    .hero{
+      border-color:rgba(255,43,214,.44);
+      box-shadow:0 22px 90px rgba(0,0,0,.75),0 0 38px rgba(255,43,214,.22),0 0 54px rgba(0,245,255,.12);
+    }
+    .hero:before{
+      background:linear-gradient(135deg,rgba(255,43,214,.55),rgba(0,245,255,.34),rgba(255,230,109,.26));
+      filter:blur(4px);
+    }
+    .hero:after{color:rgba(255,230,109,.22);text-shadow:0 0 26px rgba(255,230,109,.75),0 0 46px rgba(255,43,214,.38)}
+    .kicker{color:var(--blue);text-shadow:0 0 12px rgba(0,245,255,.9),0 0 28px rgba(255,43,214,.46)}
+    .hero h1{
+      color:#fff;
+      text-shadow:0 0 9px rgba(255,255,255,.74),0 0 22px rgba(0,245,255,.52),0 0 42px rgba(255,43,214,.42);
+    }
+    .hero h1 span:first-child{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.78),0 0 28px rgba(0,245,255,.72)}
+    .hero h1 span:last-child{color:#ffe66d;text-shadow:0 0 10px rgba(255,230,109,.85),0 0 28px rgba(255,43,214,.72),0 0 44px rgba(255,138,0,.34)}
+    .status{background:rgba(0,0,0,.42);border-color:rgba(57,255,20,.42);box-shadow:0 0 18px rgba(57,255,20,.14)}
+    .personPicker,.tabs,.card{background:linear-gradient(145deg,rgba(9,0,24,.90),rgba(1,2,8,.86))}
+    .tabs{border-color:rgba(255,43,214,.32);box-shadow:0 10px 34px rgba(0,0,0,.56),0 0 24px rgba(0,245,255,.12)}
+    .tabBtn{color:rgba(245,232,255,.78)}
+    .tabBtn.active{background:linear-gradient(135deg,rgba(255,43,214,.30),rgba(0,245,255,.22));color:#fff;box-shadow:0 0 20px rgba(0,245,255,.18),inset 0 0 18px rgba(255,255,255,.05)}
+    input[type=date],input[type=password],input[type=text],input[type=number],input[type=url],select,textarea{background:#fff;color:#090015;border-color:rgba(0,245,255,.50);box-shadow:0 0 0 1px rgba(255,43,214,.10),0 0 18px rgba(0,245,255,.10)}
+    .btn{background:rgba(255,255,255,.09);border-color:rgba(0,245,255,.34);box-shadow:0 0 18px rgba(0,245,255,.10)}
+    .btn.primary{background:linear-gradient(135deg,#ff2bd6 0%,#00f5ff 52%,#ffe66d 100%);color:#05010a;text-shadow:none;box-shadow:0 0 22px rgba(255,43,214,.26),0 0 28px rgba(0,245,255,.22)}
+    .btn.ghost{background:rgba(0,245,255,.08)}
+    .progressRing{background:conic-gradient(var(--hot) var(--pct,0%),rgba(255,255,255,.12) 0);box-shadow:inset 0 0 0 10px rgba(3,0,8,.86),0 0 24px rgba(255,43,214,.18)}
+    .mission{background:linear-gradient(135deg,rgba(255,43,214,.20),rgba(0,245,255,.12));border-color:rgba(255,43,214,.34);box-shadow:0 0 22px rgba(255,43,214,.10)}
+    .mission .label,.pts,.points,.weeklyPts{color:var(--gold);text-shadow:0 0 10px rgba(255,230,109,.45)}
+    .goal,.weeklyPerson,.badgeCard,.goalStatus,.reactionCard,.progressCard,.msg,.lockedPanel{background:rgba(255,255,255,.07);border-color:rgba(0,245,255,.26);box-shadow:0 0 18px rgba(0,245,255,.055)}
+    .goal.done,.badge.earned{border-color:rgba(57,255,20,.48);background:linear-gradient(135deg,rgba(57,255,20,.16),rgba(0,245,255,.08));box-shadow:0 0 22px rgba(57,255,20,.12)}
+    .rank{background:rgba(0,245,255,.14);box-shadow:0 0 16px rgba(0,245,255,.12)}
+    .row:nth-child(1) .rank{background:linear-gradient(135deg,#ffe66d,#ff2bd6);color:#05010a;box-shadow:0 0 22px rgba(255,43,214,.30)}
+    .row:nth-child(2) .rank{background:linear-gradient(135deg,#00f5ff,#9d4dff);color:#05010a;box-shadow:0 0 20px rgba(0,245,255,.26)}
+    .row:nth-child(3) .rank{background:linear-gradient(135deg,#ff8a00,#ff2bd6);color:#05010a;box-shadow:0 0 18px rgba(255,138,0,.26)}
+    .mini span,.meter span{background:linear-gradient(90deg,#ff2bd6,#00f5ff,#39ff14,#ffe66d)}
+    .reactBtns button{background:rgba(255,43,214,.12);border-color:rgba(255,43,214,.30);box-shadow:0 0 14px rgba(255,43,214,.10)}
+    .toast{background:#fff;color:#090015;box-shadow:0 0 28px rgba(0,245,255,.22)}
+    .modalBox{background:#090015;border-color:rgba(0,245,255,.38);box-shadow:0 0 40px rgba(255,43,214,.16),var(--shadow)}
+
   </style>
 </head>
 <body>
@@ -58,13 +124,7 @@
 
   <section id="tab-leaderboard" class="tabPanel"><section class="card glass"><div class="sectionTitle"><div><h2>Leaderboard</h2><div class="small">Weekly points, total points, and crew energy in one place.</div></div></div><div id="leaderFull" class="leader"></div></section><section class="card glass"><div class="sectionTitle"><div><h2>Weekly Snapshot</h2><div id="weeklyAllRange" class="small"></div></div></div><div id="weeklyAll" class="weeklyAll"></div></section><section class="card glass messageBoard"><div class="sectionTitle"><div><h2>Hype Board</h2><div class="small">Post motivation, call your shot, and tag the crew with @.</div></div></div><div id="messageBoard"></div></section></section>
 
-
-
   <section id="tab-progress" class="tabPanel"><section class="card glass"><div class="sectionTitle"><div><h2 id="progressTitle">Progress</h2><div class="small">Targets, badges, private stats, calories, and recovery tools — all on one page.</div></div></div><h2>Weekly Goal Status</h2><div id="goalStatus" class="statusGrid" style="margin-top:12px"></div><h2 style="margin-top:18px">Progress Visuals</h2><div id="progressVisuals" class="progressGrid" style="margin-top:12px"></div><h2 style="margin-top:18px">Badges</h2><div id="badges" class="badgeGrid" style="margin-top:12px"></div><div class="privateBox"><h2>Private Weigh-In / Photo Progress</h2><div class="small">Unlock your name to log weight, a photo link, and a quick private note.</div><div id="privateProgress"></div></div><div class="privateBox"><h2>Calories</h2><div class="small">Simple private calorie tracking for the selected date.</div><div id="calorieCounter"></div></div><div class="privateBox"><h2>Sauna / Cold Plunge</h2><div class="small">Recovery logging for Miss America and Lawn Daddy.</div><div id="saunaTracker"></div></div><div class="pinBox"><h2>Change My PIN</h2><div class="small">Unlock your name first, then set a new PIN for next time.</div><div id="pinChange"></div></div></section></section>
-
-
-
-
 
   <section id="tab-rules" class="tabPanel"><section class="card glass"><h2>Rules / Scoring</h2><div class="small">Simple enough to use every day. Savage enough to stay fun.</div><div id="rulesList" class="weeklyAll"></div></section></section>
 </div>
